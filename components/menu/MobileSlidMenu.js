@@ -2,20 +2,32 @@ import React, { Fragment, useState } from "react";
 import Link from "next/link";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-const MobileSlidMenu = ({ menuList, toggleSliding,isSlidingOpen, dropdown ,setDropdown }) => {
-    
+
+const MobileSlidMenu = ({
+  menuList,
+  
+  setMobileMenu,
+}) => {
+  
   const [currentIndex, setCurrentIndex] = useState("");
+  const [dropdown, setDropdown] = useState([]);
   const [dropdowns, setDropdowns] = useState([]);
   const [currentIndexs, setCurrentIndexs] = useState("");
   const [isSlidNext, setIsSlidingNext] = useState(false);
   const toggleSlid = () => {
     setIsSlidingNext(!isSlidNext);
   };
+  const [isSlidingOpen, setIsSlidingOpen] = useState(false);
+
+  const toggleSliding = () => {
+    setIsSlidingOpen(!isSlidingOpen);
+  };
+
   const lastIndex = menuList.length - 1;
   return (
     <>
       <div className="relative">
-        <ul className={`xl:hidden absolute min-w-full  h-[100vh] bg-white `}>
+        <ul className={`xl:hidden fixed min-w-full  h-[100vh] bg-white  `}>
           {menuList.map((data, index) => {
             return (
               <Fragment key={data.id}>
@@ -80,7 +92,7 @@ const MobileSlidMenu = ({ menuList, toggleSliding,isSlidingOpen, dropdown ,setDr
         {/* =-=-=----==-=---SUB MENU LIST=-=-=----==-=--- */}
 
         <div
-          className={`xl:hidden absolute min-w-full h-[100vh] bg-yellow-400 ${
+          className={`xl:hidden absolute min-w-full h-[100vh] bg-white ${
             isSlidingOpen
               ? "right-0 transition-all duration-500"
               : "-right-full transition-all duration-500"
@@ -88,7 +100,7 @@ const MobileSlidMenu = ({ menuList, toggleSliding,isSlidingOpen, dropdown ,setDr
         >
           <div
             onClick={toggleSliding}
-            className="grid grid-cols-3 items-center h-14 bg-[#F5F5F5] text-[20px] font-semibold"
+            className="xl:hidden grid grid-cols-3 items-center h-14 bg-[#F5F5F5] text-[20px] font-semibold"
           >
             <MdKeyboardArrowLeft className="ml-[32px]" />
             <h1 className=" text-sm text-center ">{currentIndex}</h1>
@@ -152,7 +164,7 @@ const MobileSlidMenu = ({ menuList, toggleSliding,isSlidingOpen, dropdown ,setDr
         >
           <div
             onClick={toggleSlid}
-            className="grid grid-cols-3  items-center h-14 bg-[#F5F5F5] text-[20px] font-bold"
+            className="xl:hidden grid grid-cols-3  items-center h-14 bg-[#F5F5F5] text-[20px] font-bold"
           >
             <MdKeyboardArrowLeft className="ml-[32px]" />
             <h1 className=" text-sm text-center ">{currentIndexs}</h1>

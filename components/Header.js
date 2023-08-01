@@ -2,10 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState, Fragment } from "react";
 import { CiMenuBurger } from "react-icons/ci";
-import {
-  MdClose,
- 
-} from "react-icons/md";
+import { MdClose } from "react-icons/md";
 import {
   FaRegQuestionCircle,
   FaRegUser,
@@ -20,11 +17,12 @@ const logo = "/images/Allbirds.png";
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(true);
   const [dropdown, setDropdown] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState("");
 
   const lastIndex = menuList.length - 1;
 
   const [isSlidingOpen, setIsSlidingOpen] = useState(false);
- 
+
   const toggleSliding = () => {
     setIsSlidingOpen(!isSlidingOpen);
   };
@@ -32,9 +30,10 @@ const Header = () => {
   // console.log(`index : ${currentIndex}`);
   console.log(dropdown);
   return (
-    <header className={`w-full h-[50px] md:h-[80px] sticky -top-10 z-10`}>
-      <div className="bg-deepBlue h-10 text-center flex justify-center items-center ps-2 text-[11px] ">
-        <p className="text-white font-[600] tracking-[0.040em]">
+    // h-[50px]
+    <header className={` h-[50px]   sticky -top-12 z-10`}>
+      <div className="bg-deepBlue h-11 text-center flex justify-center items-center  text-[12px] ">
+        <p className="text-white font-[700]">
           {"Run On Fun. The Tree Flyer 2 Is Here. " + " "}
           <a href="/" className="underline underline-offset-1 ">
             Men's Sale
@@ -48,81 +47,85 @@ const Header = () => {
       </div>
 
       <div className=" drop-shadow-sm bg-white ">
-        <div className="grid grid-cols-12 items-center  pr-[20px] xl:ml-8 ml-[15px] xl:pr-[30px] py-[12px] ">
-          <div className="col-span-4">
+        {/* pr-[20px]  ml-[15px] xl:pr-[30px] py-[12px] xl:ml-8 */}
+        <div className="grid grid-cols-12 items-center py-4">
+          <div className="col-span-4 ">
             {/* --------------MENU ITEMS-------------- */}
-            {/* <Menu mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} /> */}
+            <div className="relative ">
+              <ul className="hidden xl:flex font-semibold items-center text-sm tracking-widest  pl-4 ">
+                {menuList.map((data, index) => {
+                  return (
+                    <Fragment key={data.id}>
+                      <li
+                        className={`cursor-pointer hover:underline mx-3  ${
+                          index === lastIndex && "text-red-700"
+                        }`}
+                      >
+                        {/* <Link href={`${data?.href}`}>{data.name}</Link> */}
 
-            <ul className="hidden relative xl:flex  font-semibold text-sm tracking-widest ">
-              {menuList.map((data, index) => {
-                return (
-                  <Fragment key={data.id}>
-                    <li
-                      className={`cursor-pointer hover:underline   ${
-                        index === lastIndex && "text-red-700"
-                      }`}
-                    >
-                      {/* <Link href={`${data?.href}`}>{data.name}</Link> */}
-
-                      {data.href ? (
-                        <Link
-                          onClick={() => {
-                            if (data?.href) {
-                              setMobileMenu(true);
-                            } else {
-                              setMobileMenu(false);
-                            }
-                          }}
-                          href={`${data?.href}`}
-                        >
-                          <h1 className="px-1">{data.name}</h1>
-                        </Link>
-                      ) : (
-                        <div className="relative">
-                          <div onClick={toggleSliding}>
-                            <div
-                              onClick={() => {
-                                setDropdown(data?.dropdown);
-                                setCurrentIndex(data.name);
-                              }}
-                            >
-                              <h1 className="px-1">{data.name}</h1>
+                        {data.href ? (
+                          <Link
+                            onClick={() => {
+                              if (data?.href) {
+                                setMobileMenu(true);
+                              } else {
+                                setMobileMenu(false);
+                              }
+                            }}
+                            href={`${data?.href}`}
+                          >
+                            <h1 className="">{data.name}</h1>
+                          </Link>
+                        ) : (
+                          <div className="relative">
+                            <div onClick={toggleSliding}>
+                              <div
+                                onClick={() => {
+                                  setDropdown(data?.dropdown);
+                                  setCurrentIndex(data.name);
+                                }}
+                              >
+                                <h1 className="">{data.name}</h1>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      )}
-                    </li>
-                  </Fragment>
-                );
-              })}
-              {/* ******************DESKTOP VIEW****************** */}
-             <DesktopDropMunu isSlidingOpen={isSlidingOpen}  dropdown={dropdown}/>
-            </ul>
+                        )}
+                      </li>
+                    </Fragment>
+                  );
+                })}
+                {/* ******************DESKTOP VIEW****************** */}
+              </ul>
+              <DesktopDropMunu
+                isSlidingOpen={isSlidingOpen}
+                dropdown={dropdown}
+              />
+            </div>
 
             {mobileMenu ? (
               <CiMenuBurger
-                className="xl:hidden text-[20px] ml-[0px] xl:ml-[30px]"
+                className="xl:hidden text-[20px] ml-[20px]"
                 onClick={() => setMobileMenu(false)}
               />
             ) : (
               <div>
                 <MdClose
-                  className="xl:hidden text-[20px] ml-[0px] xl:ml-[30px] "
+                  className="xl:hidden text-[20px] ml-[20px] "
                   onClick={() => (setMobileMenu(true), setIsSlidingOpen(false))}
                 />
               </div>
             )}
             {/* --------------MENU ITEMS-------------- */}
           </div>
-          <div className="flex justify-center col-span-4">
+          <div className="flex justify-center items-center col-span-4">
             <Link href={"/"}>
               {" "}
               <Image src={logo} width={100} height={100} alt="Allbirds" />
             </Link>
           </div>
 
-          <div className="flex justify-end  col-span-4 font-semibold text-sm tracking-widest ">
-            <ul className="hidden xl:flex space-x-3">
+          <div className="flex justify-end  col-span-4 font-semibold items-center text-sm tracking-widest mr-6">
+            <ul className="hidden xl:flex space-x-6">
               <li className="cursor-pointer hover:underline">
                 <p>SUSTAINABILITY</p>
               </li>
@@ -166,11 +169,18 @@ const Header = () => {
 
         {mobileMenu ? null : (
           // ******************MOBILE VIEW******************
-         <MobileSlidMenu menuList={menuList} setDropdown={setDropdown} toggleSliding={toggleSliding} isSlidingOpen={isSlidingOpen} dropdown={dropdown}/>
+          <MobileSlidMenu
+            menuList={menuList}
+            setDropdown={setDropdown}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+            setIsSlidingOpen={setIsSlidingOpen}
+            setMobileMenu={setMobileMenu}
+            toggleSliding={toggleSliding}
+            isSlidingOpen={isSlidingOpen}
+            dropdown={dropdown}
+          />
         )}
-
-
-{/* <DesktopDropMunu isSlidingOpen={isSlidingOpen} dropdown={dropdown}/> */}
       </div>
     </header>
   );
@@ -188,7 +198,7 @@ const menuList = [
         id: 1,
         name: "SHOES",
         dropdown: [
-          { id: 1, name: "Everyday Sneakers", link: "../Map" },
+          { id: 1, name: "Everyday Sneakers", link: "/Map" },
           { id: 2, name: "Active Shoe", link: "/" },
           { id: 3, name: "Slip-Ons", link: "/" },
           { id: 4, name: "Golf Shoes", link: "/" },
@@ -243,7 +253,7 @@ const menuList = [
             id: 2,
             ImgName: "New to Sale",
             img: "/catagory/sho2.jpg",
-            link: "/",
+            link: "/Map",
           },
         ],
       },
