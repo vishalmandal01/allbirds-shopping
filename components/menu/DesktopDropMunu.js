@@ -8,7 +8,7 @@ const DesktopDropMunu = ({ isSlidingOpen, dropdown }) => {
       <ul
         className={`4xl:hidden flex  items-start justify-center absolute  w-[98.9vw] mx-auto py-10 bg-white  ${
           isSlidingOpen
-            ? "top-[75px] transition-all duration-500 opacity-100"
+            ? "top-[40px] transition-all duration-500 opacity-100"
             : "-top-[100vh] transition-all duration-500 opacity-20"
         }`}
       >

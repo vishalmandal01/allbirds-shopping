@@ -1,7 +1,7 @@
 import HomeBgImage from "../../components/HomeBgImage";
 import Link from "next/link";
-import FavouritesCard from "../../components/card/FavouritesCard";
-
+import { TabsCard } from "../../components/card/TabsCard";
+import Image from "next/image";
 export default function Home() {
   return (
     <main className="pt-10 sm:pt-0 ">
@@ -18,7 +18,29 @@ export default function Home() {
             </p>
           </div>
           {/* ------------------FAVOURITES CARD------------------ */}
-          <FavouritesCard />
+          <TabsCard />
+
+          {/* -_-_-_-_-_-_-_-_-_-_-_-_-_BANNER IMAGE-_-_-_-_-_-_-_-_-_-_-_-_-_ */}
+
+          <div>
+            <div className=" mt-32 bg-red-500  ">
+              <Image
+                className="md:hidden md:max-h-[500px] max-h-[350px] max-w-full min-w-full"
+                src="/images/banarA1.jpg"
+                height={1000}
+                width={1000}
+                alt="bann1"
+              />
+              <Image
+                className="hidden md:block lg:max-h-[550px] max-h-[430px] max-w-full min-w-full"
+                src="/images/banar1.jpg"
+                height={1000}
+                width={1000}
+                alt="bann1"
+              />
+            </div>
+            <div>botton text</div>
+          </div>
         </div>
 
         <div>Vishal</div>
