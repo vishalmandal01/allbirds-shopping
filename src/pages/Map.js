@@ -1,4 +1,5 @@
 import React from "react";
+import HomeTabsCard from "../../components/card/image_card/HomeTabsCard";
 
 const Map = () => {
   console.log("map");
@@ -16,7 +17,7 @@ const Map = () => {
       <h1 className="font-[100]">Map</h1>
       <h1>......</h1>
 
- 
+      <HomeTabsCard />
       <h1>......</h1>
       <h1 className="font-thin">Font thin</h1>
       <h1 className="font-semibold">Font semibold</h1>

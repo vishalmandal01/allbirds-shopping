@@ -5,19 +5,35 @@
 
 
 
-/* @layer base{
-    body {
-        @apply dark:bg-slate-800 bg-gray-100
-    }
-} */
+
 .imgBtnBox:hover>.btnBox{
     display: block;
 }
 
 .cardBox:hover .imgBtnBox{
-    /* background-color: blue; */
     transform: scale(1.09)
 }
 
 
-
+/* width */
+.scrollHori::-webkit-scrollbar {
+    width: 20px; display: none;
+  }
+  
+  /* Track */
+  .scrollHori::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0 grey; 
+    border-radius: 0px;
+    display: none;
+  }
+   
+  /* Handle */
+  .scrollHori::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 10px; display: none;
+  }
+  
+  /* Handle on hover */
+  .scrollHori::-webkit-scrollbar-thumb:hover {
+    background: #b30000;  display: none;
+  }
