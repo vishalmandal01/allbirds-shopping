@@ -23,14 +23,16 @@ export function TabsCard() {
 
     // return () => window.removeEventListener("resize", setTabPosition);
   }, [activeTabIndex]);
+
   const slideLeft = () => {
-    var slider= document.getElementById('slider');
-    slider.scrollLeft =slider.slideLeft -500;
+    var slider = document.getElementById("slider");
+    slider.scrollLeft = slider.slideLeft - 500;
   };
   const slideRight = () => {
-    var slider= document.getElementById('slider');
-    slider.scrollslideRight =slider.slideRight +500;
+    var slider = document.getElementById("slider");
+    slider.scrollslideRight = slider.slideRight + 500;
   };
+
   return (
     <>
       <div className="xl:px-36 lg:mx-8 px-0">
@@ -66,7 +68,10 @@ export function TabsCard() {
         </div>
       </div>
       <div className=" lg:hidden my-8">
-        <div id='slider' className=" scrollHori relative flex justify-center cursor-grab overflow-y-scroll px-3 py-32">
+        <div
+          id="slider"
+          className=" scrollHori relative flex justify-center cursor-pointer overflow-y-scroll px-3 py-32"
+        >
           {/* SCROLL ICON RIGHT*/}
           {/* <div className="z-10 w-screen absolute  ">
             <div className='flex justify-between'>

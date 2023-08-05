@@ -29,14 +29,7 @@ export default function Home() {
           {/* -_-_-_-_-_-_-_-_-_-_-_-_-_TAB IMAGE (NEW ARRIVAL CARD) -_-_-_-_-_-_-_-_-_-_-_-_-_ */}
           <NewArrivalsCard />
 
-          {/* <div className="absolute flex items-center">
-            
-            {imgList.map((data) => {
-              return (
-                <Image src={data.img} alt={data.img} height={200} width={200} className='w-[400px] p-3 ' />
-              );
-            })}
-          </div> */}
+         
 
 
         </div>
@@ -47,15 +40,3 @@ export default function Home() {
   );
 }
 
-const imgList = [
-  { img: "/category/fav1.jpg" },
-  { img: "/category/fav1.jpg" },
-  { img: "/category/fav1.jpg" },
-  { img: "/category/fav1.jpg" },
-  { img: "/category/fav1.jpg" },
-  { img: "/category/fav1.jpg" },
-  { img: "/category/fav1.jpg" },
-  { img: "/category/fav1.jpg" },
-  { img: "/category/fav1.jpg" },
-  { img: "/category/fav1.jpg" },
-];

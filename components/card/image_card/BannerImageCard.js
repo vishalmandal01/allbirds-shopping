@@ -15,7 +15,7 @@ const BannerImageCard = () => {
           />
         </div>
 
-        <div className="md:hidden md:max relative h-[590px] w-full">
+        <div className="md:hidden relative h-[590px] w-full">
           <Image
             src="/images/banarA1.jpg"
             layout="fill"
