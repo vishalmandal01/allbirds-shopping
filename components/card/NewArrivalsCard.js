@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React, { Fragment } from "react";
 import { newArrivalsList } from "../all_list/NewArrivalsList";
-import { data } from "autoprefixer";
 
 const NewArrivalsCard = () => {
   return (
@@ -12,7 +11,7 @@ const NewArrivalsCard = () => {
 
       <div className="flex relative">
         {/* scrollHori */}
-        <div className=" flex overflow-x-scroll  pb-20 px-20">
+        <div className="scrollHori flex overflow-x-scroll  pb-20 px-20">
           {newArrivalsList.map((data) => {
             return (
               <Fragment key={data.id}>

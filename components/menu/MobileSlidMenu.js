@@ -1,14 +1,13 @@
 import React, { Fragment, useState } from "react";
 import Link from "next/link";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-
+import { data } from "autoprefixer";
 
 const MobileSlidMenu = ({
   menuList,
-  
+
   setMobileMenu,
 }) => {
-  
   const [currentIndex, setCurrentIndex] = useState("");
   const [dropdown, setDropdown] = useState([]);
   const [dropdowns, setDropdowns] = useState([]);
@@ -22,8 +21,12 @@ const MobileSlidMenu = ({
   const toggleSliding = () => {
     setIsSlidingOpen(!isSlidingOpen);
   };
+  const [imageIndex, setImageIndex] =useState([])
 
-  const lastIndex = menuList.length - 1;
+  // const lastIndex = menuList.length - 1;
+
+  const lastIndex = menuList.slice(0, 5).length - 1;
+  const itemIndex = dropdown.length -1;
   return (
     <>
       <div className="relative">
@@ -108,10 +111,12 @@ const MobileSlidMenu = ({
           <hr />
 
           <ul>
-            {dropdown.map((slidData) => {
+            {dropdown.map((slidData, index) => {
+             console.log("index data", index)
+             console.log("index data", itemIndex)
               return (
-                <Fragment key={slidData.id}>
-                  <div onClick={toggleSlid}>
+                <Fragment  key={slidData.id}>
+                  <div  onClick={index === itemIndex ? null: toggleSlid}>
                     <div
                       onClick={() => {
                         setDropdowns(slidData?.dropdown);
@@ -120,13 +125,14 @@ const MobileSlidMenu = ({
                       className="flex justify-between items-center mx-[32px] text-[20px] font-semibold h-12"
                     >
                       <h1 className="text-sm">{slidData.name}</h1>
-                      <MdKeyboardArrowRight />
+                     {index === itemIndex ? null : <MdKeyboardArrowRight />  }
                     </div>
                     <hr />
                   </div>
                 </Fragment>
               );
             })}
+          </ul>
             {/* {dropdowns.map((slidData) => {
                   return (
                     <Fragment key={slidData.id}>
@@ -150,7 +156,20 @@ const MobileSlidMenu = ({
                     </Fragment>
                   );
                 })} */}
-          </ul>
+
+
+          {/* MOBILE MENU IMAGE  */}
+          {/* {menuList.map((data ) =>{return(<>{data.name}</> )})}
+          <div className="grid grid-cols-2">
+            {dropdowns.map((data ,i) => {
+              return (
+                <Fragment key={i}>
+                  <div className="bg-red-700"><h2>{data.ImgName}</h2></div>
+                </Fragment>
+              );
+            })}
+          </div> */}
+          {/* {imageIndex.map((data,i)=>{return(<Fragment key={i}><h1>{data.ImgName}</h1></Fragment>)})} */}
         </div>
 
         {/* NEXT or LAST MENU LIST  */}

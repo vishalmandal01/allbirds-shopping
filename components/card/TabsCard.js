@@ -35,7 +35,7 @@ export function TabsCard() {
 
   return (
     <>
-      <div className="xl:px-36 lg:mx-8 px-0">
+      <div className="xl:px-36 lg:mx-8 px-0 mb-20">
         <h1 className="text-center font-bold lg:text-[32px] text-[25px] xl:my-14 my-6">
           Our Favourites
         </h1>
@@ -61,9 +61,14 @@ export function TabsCard() {
         </div>
         <div className="lg:block hidden">
           <div className=" grid grid-cols-3 gap-6 my-8 ">
-            {tabsDatas[activeTabIndex].dataList.map((data) => {
-              return <HomeTabsCard data={data} />;
-            })}
+            {tabsDatas[activeTabIndex].dataList.map((data, i) => {
+            return (
+              <Fragment key={i}>
+               
+                <HomeTabsCard data={data} />
+              </Fragment>
+            );
+          })}
           </div>
         </div>
       </div>
@@ -82,8 +87,13 @@ export function TabsCard() {
           </div> */}
           {/* SCROLL ICON RIGHT*/}
 
-          {tabsDatas[activeTabIndex].dataList.map((data) => {
-            return <HomeTabsCard data={data} />;
+          {tabsDatas[activeTabIndex].dataList.map((data, i) => {
+            return (
+              <Fragment key={i}>
+               
+                <HomeTabsCard data={data} />
+              </Fragment>
+            );
           })}
 
           {/* SCROLL ICON  left*/}

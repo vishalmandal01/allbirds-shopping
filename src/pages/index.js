@@ -1,9 +1,20 @@
 import HomeBgImage from "../../components/HomeBgImage";
 import Link from "next/link";
 import { TabsCard } from "../../components/card/TabsCard";
-import BannerImageCard from "../../components/card/image_card/BannerImageCard";
+import {
+  bannerThardList,
+  bannerSecond,
+  bannerEvent,
+} from "../../components/all_list/BannerList";
+import {
+  collectionList,
+  storieList,
+} from "../../components/all_list/CollectionsList";
 import NewArrivalsCard from "../../components/card/NewArrivalsCard";
 import Image from "next/image";
+import NewBannerImageCard from "../../components/card/image_card/NewBannerImageCard";
+import CollectionScrollCard from "../../components/card/CollectionScrollCard";
+import BottomJoingCard from "../../components/card/BottomJoingCard";
 
 export default function Home() {
   return (
@@ -25,18 +36,24 @@ export default function Home() {
 
           {/* -_-_-_-_-_-_-_-_-_-_-_-_-_BANNER IMAGE-_-_-_-_-_-_-_-_-_-_-_-_-_ */}
 
-          <BannerImageCard />
+          <NewBannerImageCard list={bannerSecond} />
           {/* -_-_-_-_-_-_-_-_-_-_-_-_-_TAB IMAGE (NEW ARRIVAL CARD) -_-_-_-_-_-_-_-_-_-_-_-_-_ */}
           <NewArrivalsCard />
 
-         
-
-
+          {/* -_-_-_-_-_-_-_-_-_-_-_-_-_BANNER IMAGE (Collections) -_-_-_-_-_-_-_-_-_-_-_-_-_ */}
+          <NewBannerImageCard list={bannerThardList} />
+          <CollectionScrollCard
+            title="Shop The Collections"
+            list={collectionList}
+          />
+          <div className="mt-28">
+            <NewBannerImageCard list={bannerEvent} />
+          </div>
+          <CollectionScrollCard title="Stories" list={storieList} />
         </div>
 
-        <div>Vishal</div>
+        <BottomJoingCard />
       </div>
     </main>
   );
 }
-

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Button from "../../button/Button";
 import BorderButton from "../../button/BorderButton";
 import Image from "next/image";
@@ -55,13 +55,13 @@ const HomeTabsCard = ({ data }) => {
         </div>
         <div className="lg:hidden flex flex-col justify-end   md:h-28 h-[99px]">
           <div className=" ">
-            {data?.btn?.map((data) => {
+            {data?.btn?.map((data,i) => {
               return (
-                <BorderButton
-                  name={data.btnName}
-                  onClick={data.link}
-                  className="w-full  my-1 py-3 text-xs"
-                />
+               <Fragment key={i} > <BorderButton
+               name={data.btnName}
+               onClick={data.link}
+               className="w-full  my-1 py-3 text-xs"
+             /></Fragment>
               );
             })}
           </div>

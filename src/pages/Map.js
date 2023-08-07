@@ -1,5 +1,7 @@
 import React from "react";
 import HomeTabsCard from "../../components/card/image_card/HomeTabsCard";
+import NewBannerImageCard from "../../components/card/image_card/NewBannerImageCard";
+import Image from "next/image";
 
 const Map = () => {
   console.log("map");
@@ -16,8 +18,8 @@ const Map = () => {
       <h1 className="font-[100]">Map</h1>
       <h1 className="font-[100]">Map</h1>
       <h1>......</h1>
-
-      <HomeTabsCard />
+{/* <NewBannerImageCard /> */}
+<Image src="/images/banner/banar1.png" height={1000} width={1000} alt="mmm"/>
       <h1>......</h1>
       <h1 className="font-thin">Font thin</h1>
       <h1 className="font-semibold">Font semibold</h1>

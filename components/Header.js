@@ -12,14 +12,12 @@ import {
 import DesktopDropMunu from "./menu/DesktopDropMunu";
 import MobileSlidMenu from "./menu/MobileSlidMenu";
 
-const logo = "/images/Allbirds.png";
-
 const Header = () => {
   const [mobileMenu, setMobileMenu] = useState(true);
   const [dropdown, setDropdown] = useState([]);
   const [currentIndex, setCurrentIndex] = useState("");
 
-  const lastIndex = menuList.length - 1;
+  const lastIndex = menuList.slice(0, 5).length - 1;
 
   const [isSlidingOpen, setIsSlidingOpen] = useState(false);
 
@@ -53,7 +51,7 @@ const Header = () => {
             {/* --------------MENU ITEMS-------------- */}
             <div className="relative ">
               <ul className="hidden xl:flex font-semibold items-center text-sm tracking-widest  pl-4 ">
-                {menuList.map((data, index) => {
+                {menuList.slice(0, 5).map((data, index) => {
                   return (
                     <Fragment key={data.id}>
                       <li
@@ -119,16 +117,54 @@ const Header = () => {
           </div>
           <div className="flex justify-center items-center col-span-4">
             <Link href={"/"}>
-              {" "}
-              <Image src={logo} width={100} height={100} alt="Allbirds" />
+              <Image
+                src="/images/Allbirds.png"
+                width={100}
+                height={100}
+                alt="Allbirds"
+              />
             </Link>
           </div>
 
           <div className="flex justify-end  col-span-4 font-semibold items-center text-sm tracking-widest mr-6">
             <ul className="hidden xl:flex space-x-6">
-              <li className="cursor-pointer hover:underline">
-                <p>SUSTAINABILITY</p>
-              </li>
+              {/* RIGHT MENU INDEX   */}
+              {menuList.slice(5, 6).map((data, index) => {
+                return (
+                  <Fragment key={data.id}>
+                    <li className="cursor-pointer hover:underline">
+                      {data.href ? (
+                        <Link
+                          onClick={() => {
+                            if (data?.href) {
+                              setMobileMenu(true);
+                            } else {
+                              setMobileMenu(false);
+                            }
+                          }}
+                          href={`${data?.href}`}
+                        >
+                          <h1 className="">{data.name}</h1>
+                        </Link>
+                      ) : (
+                        <div className="relative">
+                          <div onClick={toggleSliding}>
+                            <div
+                              onClick={() => {
+                                setDropdown(data?.dropdown);
+                                setCurrentIndex(data.name);
+                              }}
+                            >
+                              <h1 className="">{data.name}</h1>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </li>
+                  </Fragment>
+                );
+              })}
+
               <li className="cursor-pointer hover:underline">
                 <Link href={"../Map"}>STORES</Link>
               </li>
@@ -246,13 +282,13 @@ const menuList = [
           {
             id: 1,
             ImgName: "The Tree Flyer 2",
-            img: "/catagory/sho1.jpg",
+            img: "/category/sho1.jpg",
             link: "/",
           },
           {
             id: 2,
             ImgName: "New to Sale",
-            img: "/catagory/sho2.jpg",
+            img: "/category/sho2.jpg",
             link: "/Map",
           },
         ],
@@ -316,13 +352,13 @@ const menuList = [
           {
             id: 1,
             ImgName: "The Tree Flyer 2",
-            img: "/catagory/wosho1.jpg",
+            img: "/category/wosho1.jpg",
             link: "/",
           },
           {
             id: 2,
             ImgName: "The Tree Flyer 2",
-            img: "/catagory/wosho2.jpg",
+            img: "/category/wosho2.jpg",
             link: "/",
           },
         ],
@@ -354,13 +390,13 @@ const menuList = [
           {
             id: 1,
             ImgName: "Men's New Arrivals",
-            img: "/catagory/newsho1.jpg",
+            img: "/category/newsho1.jpg",
             link: "/",
           },
           {
             id: 2,
             ImgName: "Women's New Arrivals",
-            img: "/catagory/newsho2.jpg",
+            img: "/category/newsho2.jpg",
             link: "/",
           },
         ],
@@ -394,13 +430,47 @@ const menuList = [
           {
             id: 1,
             ImgName: "Men's New Arrivals",
-            img: "/catagory/bg1.png",
+            img: "/category/bg1.png",
             link: "/",
           },
           {
             id: 2,
             ImgName: "Women's New Arrivals",
-            img: "/catagory/bg2.png",
+            img: "/category/bg2.png",
+            link: "/",
+          },
+        ],
+      },
+    ],
+  },
+  // RIGHT LIST 6-6
+  {
+    id: 6,
+    name: "SUSTAINABILITY",
+    dropdown: [
+      {
+        id: 1,
+        name: "INITIATIVES",
+        dropdown: [
+          { id: 1, name: "Sale 1", link: "/" },
+          { id: 2, name: "Sale 2", link: "/" },
+        ],
+      },
+
+      {
+        id: 2,
+        name: "FEATURED",
+        dropdown: [
+          {
+            id: 1,
+            ImgName: "Our Sustainability Strategy",
+            img: "/category/our1.jpg",
+            link: "/",
+          },
+          {
+            id: 2,
+            ImgName: "Our Sustainability Strategy",
+            img: "/category/our2.jpg",
             link: "/",
           },
         ],

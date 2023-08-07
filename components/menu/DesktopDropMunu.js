@@ -31,7 +31,6 @@ const DesktopDropMunu = ({ isSlidingOpen, dropdown }) => {
                           <Link href={data.link}>
                             <div className="pb-2  relative">
                               <Image
-                                className=""
                                 src={data.img}
                                 alt={data.ImgName}
                                 height={200}
