@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React ,{Fragment} from "react";
 import Button from "../../button/Button";
 import BorderButton from "../../button/BorderButton";
 import Image from "next/image";
@@ -63,7 +63,7 @@ const HomeTabsCard = ({ data }) => {
                className="w-full  my-1 py-3 text-xs"
              /></Fragment>
               );
-            })}
+            })}               
           </div>
         </div>
       </div>

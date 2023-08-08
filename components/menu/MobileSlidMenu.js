@@ -1,7 +1,8 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Link from "next/link";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { data } from "autoprefixer";
+import Image from "next/image";
 
 const MobileSlidMenu = ({
   menuList,
@@ -21,12 +22,10 @@ const MobileSlidMenu = ({
   const toggleSliding = () => {
     setIsSlidingOpen(!isSlidingOpen);
   };
-  const [imageIndex, setImageIndex] =useState([])
-
-  // const lastIndex = menuList.length - 1;
 
   const lastIndex = menuList.slice(0, 5).length - 1;
-  const itemIndex = dropdown.length -1;
+  const itemIndex = dropdown.length - 1;
+
   return (
     <>
       <div className="relative">
@@ -50,7 +49,7 @@ const MobileSlidMenu = ({
                       }}
                       href={`${data?.href}`}
                     >
-                      <div className="flex justify-between px-[32px] py-4  font-semibold">
+                      <div className="flex justify-between px-[32px] py-3  font-semibold">
                         <h1 className="text-sm">{data.name}</h1>
                         {data.dropdown && (
                           <MdKeyboardArrowRight className="text-[20px] text-black " />
@@ -64,7 +63,7 @@ const MobileSlidMenu = ({
                           setDropdown(data?.dropdown);
                           setCurrentIndex(data.name);
                         }}
-                        className=" flex justify-between px-[32px] py-4 font-semibold "
+                        className=" flex justify-between px-[32px] py-3 font-semibold "
                       >
                         <h1 className="text-sm">{data.name}</h1>
                         {data.dropdown && (
@@ -79,17 +78,26 @@ const MobileSlidMenu = ({
             );
           })}
 
-          <li className="cursor-pointer hover:underline font-bold text-xs px-[32px] py-4">
-            <p className="">SUSTAINABILITY</p>
-            <hr />
-          </li>
-          <li className="cursor-pointer hover:underline font-bold text-xs">
+         
+          <li className="cursor-pointer font-bold text-xs mt-2">
             <Link onClick={() => setMobileMenu(true)} href={"../Map"}>
-              STORES
-            </Link>
+              <h1 className="text-sm px-[32px] py-3 font-semibold"> STORES</h1>
+            </Link><hr/>
           </li>
-          <li className="text-sm">Account</li>
-          <li className="text-sm">Help</li>
+
+          <li className="cursor-pointer font-bold text-xs mt-2">
+            <Link onClick={() => setMobileMenu(true)} href={"../Map"}>
+              <h1 className="text-sm px-[32px] py-3 font-semibold"> Account</h1>
+            </Link><hr/>
+          </li>
+
+          <li className="cursor-pointer font-bold text-xs mt-2">
+            <Link onClick={() => setMobileMenu(true)} href={"/"}>
+              <h1 className="text-sm px-[32px] py-3 font-semibold"> Help</h1>
+            </Link><hr/>
+          </li>
+          
+          
         </ul>
 
         {/* =-=-=----==-=---SUB MENU LIST=-=-=----==-=--- */}
@@ -110,66 +118,61 @@ const MobileSlidMenu = ({
           </div>
           <hr />
 
-          <ul>
-            {dropdown.map((slidData, index) => {
-             console.log("index data", index)
-             console.log("index data", itemIndex)
-              return (
-                <Fragment  key={slidData.id}>
-                  <div  onClick={index === itemIndex ? null: toggleSlid}>
-                    <div
-                      onClick={() => {
-                        setDropdowns(slidData?.dropdown);
-                        setCurrentIndexs(slidData.name);
-                      }}
-                      className="flex justify-between items-center mx-[32px] text-[20px] font-semibold h-12"
-                    >
-                      <h1 className="text-sm">{slidData.name}</h1>
-                     {index === itemIndex ? null : <MdKeyboardArrowRight />  }
-                    </div>
-                    <hr />
+          {dropdown.map((slidData, index, i) => {
+            return (
+              <Fragment key={i}>
+                <div onClick={index === itemIndex ? null : toggleSlid}>
+                  <div
+                    onClick={() => {
+                      setDropdowns(slidData?.dropdown);
+                      index === itemIndex
+                        ? setImageIndex(slidData?.dropdown)
+                        : null;
+                      setCurrentIndexs(slidData.name);
+                    }}
+                    className="flex justify-between items-center mx-[32px] text-[20px] font-semibold h-12"
+                  >
+                    <h1 className="text-sm">{slidData.name}</h1>
+                    {index === itemIndex ? null : <MdKeyboardArrowRight />}
                   </div>
-                </Fragment>
-              );
-            })}
-          </ul>
-            {/* {dropdowns.map((slidData) => {
-                  return (
-                    <Fragment key={slidData.id}>
-                      {slidData?.name ? (
-                                  <h1 className="space-y-10">{slidData.name}</h1>
-                                ) : (
-                                  <div className="p-2 ">
-                                    <p className=" top-12 text-white font-bold right-[30%]">
-                                      {slidData.ImgName}
-                                    </p>
-                                    <Image
-                                      className="h-24 w-fit"
-                                      src={slidData.img}
-                                      alt={slidData.ImgName}
-                                      height={100}
-                                      width={100}
-                                    />
-                                  </div>
-                                )}
-                    
-                    </Fragment>
-                  );
-                })} */}
-
+                  <hr />
+                </div>
+              </Fragment>
+            );
+          })}
 
           {/* MOBILE MENU IMAGE  */}
-          {/* {menuList.map((data ) =>{return(<>{data.name}</> )})}
-          <div className="grid grid-cols-2">
-            {dropdowns.map((data ,i) => {
+
+          <div className="flex">
+            {dropdown.map((slidData, i) => {
               return (
                 <Fragment key={i}>
-                  <div className="bg-red-700"><h2>{data.ImgName}</h2></div>
+                  {slidData.dropdown.map((item, i) => {
+                    return (
+                      <Fragment key={i}>
+                        {item.name ? null : (
+                          <div className="">
+                            <div className="mx-[1px] w-[50vw] md:h-[50vh] h-[25vh] bg-green-600">
+                              <Image
+                                className="bg-mint text-mint fill-current"
+                                src={item.img}
+                                alt={item.ImgName}
+                                width="1000"
+                                height="1000"
+                              />
+                              <h2 className="text-center font-bold">
+                                {item.ImgName}
+                              </h2>
+                            </div>
+                          </div>
+                        )}
+                      </Fragment>
+                    );
+                  })}
                 </Fragment>
               );
             })}
-          </div> */}
-          {/* {imageIndex.map((data,i)=>{return(<Fragment key={i}><h1>{data.ImgName}</h1></Fragment>)})} */}
+          </div>
         </div>
 
         {/* NEXT or LAST MENU LIST  */}

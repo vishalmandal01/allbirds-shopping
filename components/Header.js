@@ -166,7 +166,7 @@ const Header = () => {
               })}
 
               <li className="cursor-pointer hover:underline">
-                <Link href={"../Map"}>STORES</Link>
+                <Link href={"/view/Map"}>STORES</Link>
               </li>
               <li className="">
                 <Link href={""}>
@@ -289,7 +289,7 @@ const menuList = [
             id: 2,
             ImgName: "New to Sale",
             img: "/category/sho2.jpg",
-            link: "/Map",
+            link: "/",
           },
         ],
       },
@@ -365,7 +365,9 @@ const menuList = [
       },
     ],
   },
+  
   { id: 3, name: "KIDS", href: "/" },
+
   {
     id: 4,
     name: "NEW ARRIVALS",
@@ -411,7 +413,7 @@ const menuList = [
         id: 1,
         name: "MEN'S SALE",
         dropdown: [
-          { id: 1, name: "Sale Shoes", link: "/" },
+          { id: 1, name: "Sale Shoes", link: "/view/SalePage" },
           { id: 2, name: "Sale Apparel", link: "/" },
         ],
       },
