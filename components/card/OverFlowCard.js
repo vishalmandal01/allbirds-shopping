@@ -3,10 +3,16 @@ import Link from "next/link";
 import React, { useState, Fragment } from "react";
 
 const OverFlowCard = ({ data }) => {
+  const [isActive, setIsActive] = useState(null);
+  const toggleIsActive = (i) => {
+    setIsActive(i);
+  };
+
   const [isHovering, setIsHovered] = useState(false);
   const onMouseEnter = () => setIsHovered(true);
   const onMouseLeave = () => setIsHovered(false);
 
+  console.log("click index", isActive);
   return (
     <div>
       {/* HOVER SHOW CARD  */}
@@ -14,12 +20,12 @@ const OverFlowCard = ({ data }) => {
         return (
           <Fragment key={i}>
             <div
-              className=" hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-sm w-[300px] "
+              className=" hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-sm w-[380px] "
               // onMouseEnter={onMouseEnter}
               // onMouseLeave={onMouseLeave}
             >
               {isHovering ? (
-                <div className="m-5  ">
+                <div className="m-[10px]  ">
                   <div className="h-[200px]  ">
                     <Image
                       src="/category/shoes/sShow2.jpg"
@@ -33,7 +39,7 @@ const OverFlowCard = ({ data }) => {
               ) : (
                 <div className="p-5 red  h-[450px]">
                   {/* CENTER CARD */}
-                  <div className="h-[250px] relative overflow-hidden">
+                  <div className="h-[290px] relative overflow-hidden">
                     <Image
                       src="/category/shoes/sShow1.jpg"
                       layout="fill"
@@ -41,7 +47,7 @@ const OverFlowCard = ({ data }) => {
                       alt="a"
                     />
                   </div>
-                  <div className="">
+                  <div className="my-[2px]">
                     <p className="font-bold text-sm">
                       {item.title}
                       {/* Men's Trail Runners SWT */}
@@ -60,7 +66,7 @@ const OverFlowCard = ({ data }) => {
                         $250
                       </span>
                     </p>
-                    <div className="flex gap-1">
+                    <div className="flex gap-2">
                       {/* {item.Image.map((image, i) => {
                         return (
                           <Fragment key={i}>
@@ -68,15 +74,20 @@ const OverFlowCard = ({ data }) => {
                           </Fragment>
                         );
                       })} */}
-                      {item.image.map((item, i) => {
+                      {item.image.slice(0, 6).map((item, i) => {
                         return (
                           <Fragment key={i}>
-                            <div className="h-[50px]  w-[80px] overflow-hidden relative">
+                            <div
+                              onClick={() => {
+                                toggleIsActive(i);
+                              }}
+                              className="hover:border  border border-transparent hover:border-gray-600 overflow-hidden relative rounded-sm "
+                            >
                               <Image
-                                src="/category/shoes/sShow1.jpg"
-                                layout="fill"
-                                objectFit="cover"
-                                alt="a"
+                                src={item.img}
+                                alt={item.subtitle}
+                                height={40}
+                                width={50}
                               />
                             </div>
                           </Fragment>

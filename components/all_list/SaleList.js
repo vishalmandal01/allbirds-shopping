@@ -33,39 +33,33 @@ export const saleList = [
       },
       {
         id: 5,
-        img: "/category/shoes/sShow5.jpg",
-        subtitle: "Honey Rust (Forage Tan Sole)",
-        mrp: "220",
-        disMrp: "250",
-      },
-      {
-        id: 6,
         img: "/category/shoes/sShow6.jpg",
         subtitle: "Honey Rust (Forage Tan Sole)",
         mrp: "220",
         disMrp: "250",
       },
       {
-        id: 7,
+        id: 6,
         img: "/category/shoes/sShow7.jpg",
         subtitle: "Honey Rust (Forage Tan Sole)",
         mrp: "220",
         disMrp: "250",
       },
       {
-        id: 8,
+        id: 7,
         img: "/category/shoes/sShow8.jpg",
         subtitle: "Honey Rust (Forage Tan Sole)",
         mrp: "220",
         disMrp: "250",
       },
       {
-        id: 9,
+        id: 8,
         img: "/category/shoes/sShow9.jpg",
         subtitle: "Honey Rust (Forage Tan Sole)",
         mrp: "220",
         disMrp: "250",
       },
+     
     ],
   },
   {
